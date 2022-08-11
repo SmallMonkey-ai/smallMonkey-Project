@@ -2,11 +2,11 @@
 封装的Js成方法(来自第三方或原生)
 ### day.js 使用
 
-#####引入day.js
+####引入day.js
 在vue中 直接 import TimeFormatter from ./time.js
 let timeFormatter = new TimeFormatter() 即可使用
 
-######包含方法（以下方法可通过实例直接调用）
+####包含方法（以下方法可通过实例直接调用）
 处理时间（处理时间 默认返回当前时间精确到秒  参数{ format：需要处理的格式(默认 'YYYY-MM-DD HH:mm:ss') time:需要处理的时间（默认当前时间）}）
 dealCurrentTime（format,time）
 
