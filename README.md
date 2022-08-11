@@ -2,11 +2,11 @@
 封装的Js成方法(来自第三方或原生)
 ### day.js 使用
 
-####引入day.js
+引入day.js
 在vue中 直接 import TimeFormatter from ./time.js
 let timeFormatter = new TimeFormatter() 即可使用
 
-####包含方法（以下方法可通过实例直接调用）
+#### 包含方法（以下方法可通过实例直接调用）
 处理时间（处理时间 默认返回当前时间精确到秒  参数{ format：需要处理的格式(默认 'YYYY-MM-DD HH:mm:ss') time:需要处理的时间（默认当前时间）}）
 dealCurrentTime（format,time）
 
@@ -37,12 +37,13 @@ getDayOfWeek(time)
  getCurrentMonthDays(time) 
  
  
- ###数组处理
+ ### 数组处理
 在vue中 直接 import DealCurrentArray from './dealArray.js'
 let dealCurrentArray = new DealCurrentArray() 即可使用除（扁平化转tree tree转扁平化）
 
- #### 扁平化转tree tree转扁平化
+ 扁平化转tree tree转扁平化
  import {treeToFlat,flatToTree} from './dealArray.js'
+ 
  数组扁平化数据转成tree形数据 Json格式是通过 id 以及 parent_id进行关联的
  参数一 扁平化数据
  flatToTree(array)
@@ -50,7 +51,7 @@ let dealCurrentArray = new DealCurrentArray() 即可使用除（扁平化转tree
  数组tree形数据转成扁平化数据 子代放于children中
  treeToFlat(array)
  
- ####处理方法（以下方法可通过实例直接调用）
+ #### 包含方法（以下方法可通过实例直接调用）
  判断是否为数组对象 参数一 判定对象
  judgeArray(array)
   
