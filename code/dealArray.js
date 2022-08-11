@@ -165,8 +165,8 @@ export function flatToTree(array) {
 
 // 数组tree形数据转成扁平化数据 子代放于children中
 // 由于此方法涉及递归 故不适合封装于类中  
-export function treeToFlat(treeData) {
-    return treeData.reduce((res, item) => {
+export function treeToFlat(array) {
+    return array.reduce((res, item) => {
             const { children, ...i } = item
         return res.concat(i, children && children.length ? treeToFlat(children) : [])
         }, [])
