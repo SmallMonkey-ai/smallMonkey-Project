@@ -1,6 +1,6 @@
 import { createApp, nextTick } from 'vue'
 import App from './App.vue'
-import store from "@/store";
+import { createPinia } from "pinia";
 import router from '@/router'
 import DealCurrentArray from './plugins/myJs/dealArray'
 import TimeFormatter from './plugins/myJs/time'
@@ -15,6 +15,6 @@ nextTick(() => {
     app.config.globalProperties.$Object = dealObject
 })
 
-app.use(store)
+app.use(createPinia())
 app.use(router)
 app.mount('#app')
