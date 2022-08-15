@@ -45,9 +45,9 @@ class timeFormatter {
         
     }
     // 判断是否是闰年 参数{year:处理的年份}
-    getCurrentIsLeapYear(year) {
+    getCurrentIsLeapYear(time) {
         // return dayJs(year).isLeapYear()
-        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0 ? '平年' : '闰年'
+        return time % 4 == 0 && time % 100 != 0 || time % 400 == 0 ? '平年' : '闰年'
     }
 
     // 时间转时间戳
