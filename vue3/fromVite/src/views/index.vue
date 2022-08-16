@@ -21,7 +21,6 @@ let src = new URL('../assets/monkeyDream.jpeg', import.meta.url).href
 const router = useRouter()
 onMounted(() => {
     router.push('./')
-
 })
 </script>
 
@@ -43,25 +42,25 @@ onMounted(() => {
                 </el-radio-group>
                 <el-menu active-text-color="#ffd04b" background-color="#545c64" class="el-menu-vertical-demo"
                     default-active="1" text-color="#fff" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-                    <el-menu-item index="1" @click="$router.push('./home')">
+                    <el-menu-item index="1" @click="$router.push('/dealTime')">
                         <el-icon>
                             <location />
                         </el-icon>
                         <template #title>时间处理</template>
                     </el-menu-item>
-                    <el-menu-item index="2" @click="$router.push('./homeA')">
+                    <el-menu-item index="2" @click="$router.push('/dealArray')">
                         <el-icon>
                             <icon-menu />
                         </el-icon>
                         <template #title>数组处理</template>
                     </el-menu-item>
-                    <el-menu-item index="3" @click="$router.push('./homeB')">
+                    <el-menu-item index="3" @click="$router.push('/dealObject')">
                         <el-icon>
                             <document />
                         </el-icon>
                         <template #title>对象处理</template>
                     </el-menu-item>
-                    <el-menu-item index="4" @click="$router.push('./homeC')">
+                    <el-menu-item index="4" @click="$router.push('/dealOther')">
                         <el-icon>
                             <setting />
                         </el-icon>

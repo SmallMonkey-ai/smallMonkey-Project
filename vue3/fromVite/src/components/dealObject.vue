@@ -1,4 +1,5 @@
 <script setup>
+import { ref, computed } from 'vue';
 const tableData = [
     {
         wayName: 'judgeObject',
@@ -29,17 +30,33 @@ const tableData = [
         wayName: 'changeObjectKey',
         params: 'object newkeyS',
         desc: '更改对象里的key值',
-    },
+    }
 ]
+const search = ref('')
+const filterTableData = computed(() =>
+    tableData.filter(
+        (data) =>
+            !search.value ||
+            data.desc.toLowerCase().includes(search.value.toLowerCase())
+    )
+)
+function showDetail(row) {
+    console.log(row)
+}
 </script>
 
 <template>
     <div class="main">
         <h1>欢迎来到对象处理页</h1>
-        <el-table :data="tableData" height="650" style="width: 100%">
+        <el-table :data="filterTableData" height="650" style="width: 100%" @row-click="showDetail">
             <el-table-column prop="wayName" label="方法名" width="180" />
             <el-table-column prop="params" label="参数" width="240" />
             <el-table-column prop="desc" label="描述" />
+            <el-table-column align="right">
+                <template #header>
+                    <el-input v-model="search" size="small" placeholder="搜索描述" />
+                </template>
+            </el-table-column>
         </el-table>
     </div>
 </template>

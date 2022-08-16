@@ -4,7 +4,7 @@ class dealCurrentArray {
     //  判断是否为数组对象
     // 参数一 判定对象
     judgeArray(array) {
-        return Array.isArray(array)
+        return Array.isArray(array)?'是':'否'
     }
 
     // 非对象数组去重

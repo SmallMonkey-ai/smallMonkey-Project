@@ -1,7 +1,6 @@
 
 class dealObject {
     constructor() {
-
     }
     // 判断只是对象（不是数组）
     judgeObject(object) {

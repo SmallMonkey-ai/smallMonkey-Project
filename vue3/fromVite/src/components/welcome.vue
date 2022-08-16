@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="main" @click="$router.push('/home')">
+    <div class="main" @click="$router.push('/dealTime')">
         <h1>欢迎页！！</h1>
         <img src="../assets/welcome.png" alt="">
     </div>

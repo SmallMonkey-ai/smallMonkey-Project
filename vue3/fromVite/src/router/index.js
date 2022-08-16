@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import welcome from '../components/welcome.vue'
-import home from '../components/home.vue'
-import homeA from '../components/home2.vue'
-import homeB from '../components/home3.vue'
-import homeC from '../components/home4.vue'
-
+const welcome = () => import('../components/welcome.vue')
+const dealTime = () => import('../components/dealTime.vue')
+const dealArray = () => import('../components/dealArray.vue')
+const dealObject = () => import('../components/dealObject.vue')
+const dealOther = () => import('../components/dealOther.vue')
+const tableItem = () => import('../components/tableItem.vue')
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
@@ -12,27 +12,31 @@ const router = createRouter({
             path: '/',
             name: 'welcome',
             component: welcome
-            // redirect:'/home',
         },
         {
-            path: '/home',
-            name: '测试页',
-            component: home
+            path: '/dealTime',
+            name: '时间处理',
+            component: dealTime
         },
         {
-            path: '/homeA',
-            name: '测试页2',
-            component: homeA
+            path: '/dealArray',
+            name: '数组处理',
+            component: dealArray
         },
         {
-            path: '/homeB',
-            name: '测试页3',
-            component: homeB
+            path: '/dealObject',
+            name: '对象处理',
+            component: dealObject
         },
         {
-            path: '/homeC',
-            name: '测试页4',
-            component: homeC
+            path: '/dealOther',
+            name: '其他处理',
+            component: dealOther
+        },
+        {
+            path: '/tableItem',
+            name: '方法详情',
+            component: tableItem
         },
     ]
 })
