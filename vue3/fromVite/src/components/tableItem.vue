@@ -25,7 +25,7 @@ onMounted(() => {
         } else if (item.indexOf('peakRule') != -1) {
             arr.value.push('big')
         } else if (item.indexOf('peakKey') != -1) {
-            arr.value.push('big')
+            arr.value.push('age')
         } else if (item.indexOf('filterKey') != -1) {
             arr.value.push('age')
         } else if (item.indexOf('cloneRule') != -1) {
