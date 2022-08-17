@@ -4,7 +4,7 @@ class dealObject {
     }
     // 判断只是对象（不是数组）
     judgeObject(object) {
-        return (object instanceof Object)
+        return object instanceof Object ? '是' : '否'
     }
 
     // 判断当前对象是否为空
@@ -36,7 +36,7 @@ class dealObject {
     // newKeyS {oldKey1:'newKey1',oldKey2:'newKey2'}
     changeObjectKey(object, newkeyS) {
         return Object.keys(object).reduce((result, key) => {
-        // * 取出待处理的原对象的key值 newkeyS[Object.keys(newkeyS).filter(item1 => key == item1)[0]]
+            // * 取出待处理的原对象的key值 newkeyS[Object.keys(newkeyS).filter(item1 => key == item1)[0]]
             // Object.keys(newkeyS).filter(item1 => key == item1)[0] 过滤当前key等于待改变的key
             // 上述为真时 使用新的key  反之 使用原key
             let newKey = newkeyS[Object.keys(newkeyS).filter(item1 => key == item1)[0]] || key

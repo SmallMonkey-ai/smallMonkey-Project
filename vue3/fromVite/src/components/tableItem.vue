@@ -3,11 +3,14 @@ import { onMounted, ref, getCurrentInstance, computed, reactive } from 'vue';
 let instance = getCurrentInstance()
 let RouteData = ref({})
 let arr = ref([])
+let object = ref({})
+let objectKey = ref()
+let objectNewKey = ref()
 onMounted(() => {
     RouteData.value = instance?.proxy?.$route.params
     mustOptions.value.map((item) => {
         if (item.indexOf('array') != -1) {
-            arr.value.push([{ name: '张三', age: 19 }, { name: '李四', age: 20 }, { name: '王五', age: 20 },{ name: '王五', age: null }])
+            arr.value.push([{ name: '张三', age: 19 }, { name: '李四', age: 20 }, { name: '王五', age: 20 }, { name: '王五', age: null }])
         } else if (item.indexOf('array1') != -1) {
             arr.value.push([{ name: '张三', age: 19 }, { name: '李四', age: 20 }, { name: '王五', age: 20 }])
         } else if (item.indexOf('array2') != -1) {
@@ -34,6 +37,33 @@ onMounted(() => {
             arr.value.push('name')
         } else if (item.indexOf('newKey') != -1) {
             arr.value.push('newName')
+        } else if (item.indexOf('object') != -1) {
+            if (RouteData.value.wayName != 'mergeObject') {
+                object.value = {
+                    name: '张三', age: 15, sex: false,
+                    hobby: {
+                        hobbyOne: '打篮球',
+                        hobbyTwo: 'rap',
+                        hobbyThree: '跳舞'
+                    }
+                }
+            } else {
+                object.value = [{
+                    name: '张三', age: 15, sex: false,
+                    hobby: {
+                        hobbyOne: '打篮球',
+                        hobbyTwo: 'rap',
+                        hobbyThree: '跳舞'
+                    }
+                }]
+            }
+        } else if (item.indexOf('key') != -1 && item.indexOf('newkeyS') == -1) {
+            objectKey.value = 'hobby'
+        } else if (item.indexOf('newkeyS') != -1) {
+            objectNewKey.value = {
+                hobby: 'newHobby',
+                name: 'newName'
+            }
         }
     })
 })
@@ -75,6 +105,20 @@ function makeCurrentArray() {
 function clearCurrentArray() {
     dealCurrentArrayResult.value = null
 }
+
+let dealCurrentObjectResult = ref()
+function makeCurrentObject() {
+    if (RouteData.value.wayName == 'changeObjectKey') {
+        dealCurrentObjectResult.value = instance?.proxy?.$Object[RouteData.value.wayName](object.value, objectNewKey.value)
+    } else {
+        dealCurrentObjectResult.value = instance?.proxy?.$Object[RouteData.value.wayName](object.value, objectKey.value)
+    }
+}
+
+function clearCurrentObject() {
+    dealCurrentObjectResult.value = null
+}
+
 const form = reactive({
     params: [],
     paramsOption: []
@@ -87,9 +131,6 @@ const onSubmit = () => {
         if (form.params.length > 1) {
             result.value = instance?.proxy?.$Array[RouteData.value.wayName](...form.params)
         } else {
-
-            console.log(form.paramsArray.split(" "))
-
         }
         result.value = '还在努力开发中！！'
     }
@@ -164,20 +205,7 @@ const onCancel = () => {
                     </div>
                     <div>
                         <p>示例</p>
-                        <el-form :model="form" label-width="230px" v-if="RouteData.id != 2">
-                            <el-form-item :label="'输入必选参数:' + item" v-for="(item, index) in mustOptions">
-                                <el-input v-model="form.params[index]" />
-                            </el-form-item>
-                            <el-form-item :label="'输入可选参数:' + item" v-for="(item, index) in Options">
-                                <el-input v-model="form.paramsOption[index]" />
-                            </el-form-item>
-                            <el-form-item>
-                                <el-button type="primary" @click="onSubmit">确定</el-button>
-                                <el-button @click="onCancel">清空</el-button>
-                            </el-form-item>
-                            <el-form-item v-if="result">{{ result }}</el-form-item>
-                        </el-form>
-                        <div v-else>
+                        <div>
                             <div>
                                 <p>处理前</p>
                                 <div v-for="item in mustOptions" class="infoData">
@@ -213,6 +241,62 @@ const onCancel = () => {
                                 <div class="infoData">
                                     <div>
                                         {{ dealCurrentArrayResult }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="RouteData.id == 3">
+                    <div class="introduce">
+                        <ul>
+                            <li>
+                                import DealObject from '../plugins/myJs/dealObject.js'
+                            </li>
+                            <li>
+                                let dealObject = new DealObject()
+                            </li>
+                            <li>
+                                let result = dealObject.{{ RouteData.wayName }}({{ returnParams }})
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>示例</p>
+                        <div>
+                            <div>
+                                <p>处理前</p>
+                                <div v-for="item in mustOptions" class="infoData">
+                                    {{ item }}
+                                    <div v-if="item.indexOf('object') != -1">
+                                        {name:'张三',age:15,sex:false,
+                                        hobby:{
+                                        hobbyOne:'打篮球',
+                                        hobbyTwo:'rap',
+                                        hobbyThree:'跳舞'
+                                        }
+                                        }
+                                    </div>
+                                    <div v-if="item.indexOf('key') != -1 && item.indexOf('newkeyS') == -1">
+                                        hobby
+                                    </div>
+                                    <div v-else-if="item.indexOf('newkeyS') != -1">
+                                        {
+                                        hobby:'newHobby',
+                                        name:'newName'
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dealArrayButton">
+                                <el-button type="primary" round @click="makeCurrentObject">处理</el-button>
+                                <el-button type="primary" round @click="clearCurrentObject">清空</el-button>
+                            </div>
+                            <div>
+                                <p>处理后</p>
+                                <div class="infoData">
+                                    <div>
+                                        {{ dealCurrentObjectResult }}
                                     </div>
                                 </div>
                             </div>
