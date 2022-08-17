@@ -1,7 +1,9 @@
 <template>
-    <div class="footer">
-        <div class="left">Copyright @SmallMonkey-ai All rights reserved.</div>
-    </div>
+    <el-footer>
+        <div class="footer">
+            <div class="left">Copyright @SmallMonkey-ai All rights reserved.</div>
+        </div>
+    </el-footer>
 </template>
 
 <script>
