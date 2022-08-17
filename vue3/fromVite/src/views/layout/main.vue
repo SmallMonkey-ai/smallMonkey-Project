@@ -14,4 +14,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+.el-main::-webkit-scrollbar {
+    display: none;
+}
 </style>
