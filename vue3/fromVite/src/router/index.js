@@ -5,6 +5,7 @@ const dealArray = () => import('../components/dealArray.vue')
 const dealObject = () => import('../components/dealObject.vue')
 const dealOther = () => import('../components/dealOther.vue')
 const tableItem = () => import('../components/tableItem.vue')
+const watermark = () => import('../components/watermark.vue')
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
@@ -37,6 +38,11 @@ const router = createRouter({
             path: '/tableItem',
             name: '方法详情',
             component: tableItem
+        },
+        {
+            path: '/watermark',
+            name: '页面水印',
+            component: watermark
         },
     ]
 })
