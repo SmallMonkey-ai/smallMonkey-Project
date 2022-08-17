@@ -4,7 +4,7 @@ class dealCurrentArray {
     //  判断是否为数组对象
     // 参数一 判定对象
     judgeArray(array) {
-        return Array.isArray(array)?'是':'否'
+        return Array.isArray(array) ? '是' : '否'
     }
 
     // 非对象数组去重
@@ -20,7 +20,13 @@ class dealCurrentArray {
     // 选择数组的前几项
     // 参数一：需要处理的数组 参数二：需要选择多少项
     spliceArrayPreItems(array, num) {
-        array.splice(1, num)
+        return array.splice(0, num)
+    }
+
+    // 删除数组的前几项
+    // 参数一：需要处理的数组 参数二：需要删除多少项
+    spliceArrayPreItems(array, num) {
+        array.splice(0, num)
         return array
     }
 
@@ -104,9 +110,9 @@ class dealCurrentArray {
     // 输出数组中的极值
     // 参数一 原数组 参数二 极值规则 参数三  依据哪项数据(如纯数据数组 此参数可以不传)
     // * 由于Math.max 是一组数据 而不是数组形式返回 而方法的apply相当于调用函数(指定数组替换函数的参数) 恰好apply传数组 满足下面情况
-    arrayPeak(array,rule,key) {
+    arrayPeak(array, rule, key) {
         if (key) {
-            let newArray = array.map(item=>item[key])
+            let newArray = array.map(item => item[key])
             return rule == 'big' ? Math.max.apply(Math, newArray) : Math.min.apply(Math, newArray)
         } else {
             return rule == 'big' ? Math.max.apply(Math, array) : Math.min.apply(Math, array)
@@ -118,7 +124,7 @@ class dealCurrentArray {
     //  * 可过滤 false null undefined ''  NaN 不含此项值
     arrayFilterInvented(array, key) {
         if (key) {
-            return array.filter(item=>item[key])
+            return array.filter(item => item[key])
         } else {
             return array.filter(Boolean)
         }
@@ -128,7 +134,7 @@ class dealCurrentArray {
     // 参数一 原数组 参数二 拷贝规则（deep 深拷贝 shadow 浅拷贝）
     arrayClone(array, rule) {
         if (rule == 'deep') {
-            return  JSON.parse(JSON.stringify(array))
+            return JSON.parse(JSON.stringify(array))
         } else {
             return array.concat()
         }
@@ -167,9 +173,9 @@ export function flatToTree(array) {
 // 由于此方法涉及递归 故不适合封装于类中  
 export function treeToFlat(array) {
     return array.reduce((res, item) => {
-            const { children, ...i } = item
+        const { children, ...i } = item
         return res.concat(i, children && children.length ? treeToFlat(children) : [])
-        }, [])
-    }
+    }, [])
+}
 
 export default dealCurrentArray 
