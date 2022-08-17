@@ -305,8 +305,198 @@ const onCancel = () => {
                 </div>
             </el-collapse-item>
             <el-collapse-item title="实例化挂载" name="2">
-                <div>
-                    敬请期待！！
+                <div v-if="RouteData.id == 1">
+                    <div class="introduce">
+                        <ul>
+                            <p>在main.js中</p>
+                            <li>import { createApp, nextTick } from 'vue'</li>
+                            <li>import App from './App.vue'</li>
+                            <li>
+                                import TimeFormatter from '../plugins/myJs/time.js'
+                            </li>
+                            <li>
+                                let timeFormatter = new TimeFormatter()
+                            </li>
+                            <li>const app = createApp(App)</li>
+                            <li>
+                                nextTick(() => {
+                                app.config.globalProperties.$Time = timeFormatter
+                                })
+                            </li>
+                            <p>使用的组件中</p>
+                            <li>
+                                import {getCurrentInstance } from 'vue';
+                            </li>
+                            <li>
+                                let instance = getCurrentInstance()
+                            </li>
+                            <li>
+                                let result = instance?.proxy?.$Time.{{ RouteData.wayName }}({{ returnParams }})
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>示例</p>
+                        <el-form :model="form" label-width="230px">
+                            <el-form-item :label="'输入必选参数:' + item" v-for="(item, index) in mustOptions">
+                                <el-input v-model="form.params[index]" />
+                            </el-form-item>
+                            <el-form-item :label="'输入可选参数:' + item" v-for="(item, index) in Options">
+                                <el-input v-model="form.paramsOption[index]" />
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="onSubmit">确定</el-button>
+                                <el-button @click="onCancel">清空</el-button>
+                            </el-form-item>
+                            <el-form-item v-if="result">{{ result }}</el-form-item>
+                        </el-form>
+                    </div>
+                </div>
+                <div v-if="RouteData.id == 2">
+                    <div class="introduce">
+                        <ul>
+                            <p>在main.js中</p>
+                            <li>import { createApp, nextTick } from 'vue'</li>
+                            <li>import App from './App.vue'</li>
+                            <li>
+                                import DealCurrentArray from '../plugins/myJs/dealArray.js'
+                            </li>
+                            <li>
+                                let dealCurrentArray = new DealCurrentArray()
+                            </li>
+                            <li>const app = createApp(App)</li>
+                            <li>
+                                nextTick(() => {
+                                app.config.globalProperties.$Array = dealCurrentArray
+                                })
+                            </li>
+                            <p>使用的组件中</p>
+                            <li>
+                                import {getCurrentInstance } from 'vue';
+                            </li>
+                            <li>
+                                let instance = getCurrentInstance()
+                            </li>
+                            <li>
+                                let result = instance?.proxy?.$Array.{{ RouteData.wayName }}({{ returnParams }})
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>示例</p>
+                        <div>
+                            <div>
+                                <p>处理前</p>
+                                <div v-for="item in mustOptions" class="infoData">
+                                    {{ item }}
+                                    <div
+                                        v-if="item.indexOf('array') != -1 && item.indexOf('array1') == -1 && item.indexOf('array2') == -1">
+                                        [{name:'张三',age:19},{name:'李四',age:20},{name:'王五',age:20},{ name: '王五', age:
+                                        null }]</div>
+                                    <div v-if="item.indexOf('array1') != -1">
+                                        [{name:'张三',age:19},{name:'李四',age:20},{name:'王五',age:20}]</div>
+                                    <div v-else-if="item.indexOf('array2') != -1">
+                                        [{name:'张三',age:19},{name:'李六',age:21},{name:'王七',age:22}]
+                                    </div>
+                                    <div v-else-if="item.indexOf('elementKey') != -1">name</div>
+                                    <div v-else-if="item.indexOf('elementValue') != -1">张三</div>
+                                    <div v-else-if="item.indexOf('num') != -1">3</div>
+                                    <div v-else-if="item.indexOf('sortRule') != -1">up</div>
+                                    <div v-else-if="item.indexOf('sortKey') != -1">age</div>
+                                    <div v-else-if="item.indexOf('peakRule') != -1">big</div>
+                                    <div v-else-if="item.indexOf('peakKey') != -1">age</div>
+                                    <div v-else-if="item.indexOf('filterKey') != -1">age</div>
+                                    <div v-else-if="item.indexOf('cloneRule') != -1">deep</div>
+                                    <div v-else-if="item.indexOf('oldKey') != -1">name</div>
+                                    <div v-else-if="item.indexOf('newKey') != -1">newName</div>
+                                </div>
+                            </div>
+                            <div class="dealArrayButton">
+                                <el-button type="primary" round @click="makeCurrentArray">处理</el-button>
+                                <el-button type="primary" round @click="clearCurrentArray">清空</el-button>
+                            </div>
+                            <div>
+                                <p>处理后</p>
+                                <div class="infoData">
+                                    <div>
+                                        {{ dealCurrentArrayResult }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="RouteData.id == 3">
+                    <div class="introduce">
+                        <ul>
+                            <p>在main.js中</p>
+                            <li>import { createApp, nextTick } from 'vue'</li>
+                            <li>import App from './App.vue'</li>
+                            <li>
+                                import DealObject from '../plugins/myJs/dealObject.js'
+                            </li>
+                            <li>
+                                let dealObject = new DealObject()
+                            </li>
+                            <li>const app = createApp(App)</li>
+                            <li>
+                                nextTick(() => {
+                                app.config.globalProperties.$Object = dealObject
+                                })
+                            </li>
+                            <p>使用的组件中</p>
+                            <li>
+                                import {getCurrentInstance } from 'vue';
+                            </li>
+                            <li>
+                                let instance = getCurrentInstance()
+                            </li>
+                            <li>
+                                let result = instance?.proxy?.$Object.{{ RouteData.wayName }}({{ returnParams }})
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>示例</p>
+                        <div>
+                            <div>
+                                <p>处理前</p>
+                                <div v-for="item in mustOptions" class="infoData">
+                                    {{ item }}
+                                    <div v-if="item.indexOf('object') != -1">
+                                        {name:'张三',age:15,sex:false,
+                                        hobby:{
+                                        hobbyOne:'打篮球',
+                                        hobbyTwo:'rap',
+                                        hobbyThree:'跳舞'
+                                        }
+                                        }
+                                    </div>
+                                    <div v-if="item.indexOf('key') != -1 && item.indexOf('newkeyS') == -1">
+                                        hobby
+                                    </div>
+                                    <div v-else-if="item.indexOf('newkeyS') != -1">
+                                        {
+                                        hobby:'newHobby',
+                                        name:'newName'
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dealArrayButton">
+                                <el-button type="primary" round @click="makeCurrentObject">处理</el-button>
+                                <el-button type="primary" round @click="clearCurrentObject">清空</el-button>
+                            </div>
+                            <div>
+                                <p>处理后</p>
+                                <div class="infoData">
+                                    <div>
+                                        {{ dealCurrentObjectResult }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                 </div>

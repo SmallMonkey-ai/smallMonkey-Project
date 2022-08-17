@@ -75,7 +75,7 @@ function showDetail(row) {
             <el-table-column prop="params" label="必传参数" width="240" />
             <el-table-column prop="paramsOption" label="可选参数" width="120" />
             <el-table-column prop="desc" label="描述" />
-            <el-table-column align="right">
+            <el-table-column width="240">
                 <template #header>
                     <el-input v-model="search" size="small" placeholder="搜索描述" />
                 </template>
