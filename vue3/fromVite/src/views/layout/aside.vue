@@ -63,8 +63,12 @@ const isCollapse = ref(true)
 </template>
 
 <style scoped lang="scss">
+
 .el-aside {
     width: auto;
+}
+.el-aside::-webkit-scrollbar{
+    display: none;
 }
 
 .flex-grow {
