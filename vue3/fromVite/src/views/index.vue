@@ -2,12 +2,15 @@
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 import {
-    Document,
-    Menu as IconMenu,
-    Location,
-    Setting,
     Expand,
-    Fold
+    Fold,
+    Connection,
+    Sunrise,
+    Files,
+    Cloudy,
+    Avatar,
+    Setting,
+    MagicStick
 } from '@element-plus/icons-vue'
 import footerComponent from './footer.vue'
 const isCollapse = ref(true)
@@ -22,6 +25,8 @@ const router = useRouter()
 onMounted(() => {
     router.push('./')
 })
+
+
 </script>
 
 <template>
@@ -44,25 +49,25 @@ onMounted(() => {
                     default-active="1" text-color="#fff" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
                     <el-menu-item index="1" @click="$router.push('/dealTime')">
                         <el-icon>
-                            <location />
+                            <connection />
                         </el-icon>
                         <template #title>时间处理</template>
                     </el-menu-item>
                     <el-menu-item index="2" @click="$router.push('/dealArray')">
                         <el-icon>
-                            <icon-menu />
+                            <sunrise />
                         </el-icon>
                         <template #title>数组处理</template>
                     </el-menu-item>
                     <el-menu-item index="3" @click="$router.push('/dealObject')">
                         <el-icon>
-                            <document />
+                            <Files />
                         </el-icon>
                         <template #title>对象处理</template>
                     </el-menu-item>
                     <el-menu-item index="4" @click="$router.push('/dealOther')">
                         <el-icon>
-                            <setting />
+                            <cloudy />
                         </el-icon>
                         <template #title>其他</template>
                     </el-menu-item>
@@ -76,21 +81,40 @@ onMounted(() => {
                             <el-avatar :src="src" />
                         </el-menu-item>
                         <div class="flex-grow" />
-                        <el-menu-item index="1">空间1</el-menu-item>
-                        <el-menu-item index="2">空间2</el-menu-item>
-                        <!-- <el-sub-menu index="2">
-                            <template #title>Workspace</template>
-                            <el-menu-item index="2-1">item one</el-menu-item>
-                            <el-menu-item index="2-2">item two</el-menu-item>
-                            <el-menu-item index="2-3">item three</el-menu-item>
-                            <el-sub-menu index="2-4">
-                                <template #title>item four</template>
-                                <el-menu-item index="2-4-1">item one</el-menu-item>
-                                <el-menu-item index="2-4-2">item two</el-menu-item>
-                                <el-menu-item index="2-4-3">item three</el-menu-item>
-                            </el-sub-menu>
-                        </el-sub-menu> -->
                     </el-menu>
+                    <div>
+                        <el-popover :width="200" trigger="hover" class="userPopover">
+                            <template #reference>
+                                <el-icon style="margin-right:15px" @click="$router.push('/')">
+                                    <magicStick />
+                                </el-icon>
+                            </template>
+                            <div>
+                                返回主页
+                            </div>
+                        </el-popover>
+
+                        <el-popover :width=" 200" trigger="hover" class="userPopover">
+                                    <template #reference>
+                                        <el-icon style="margin-right:15px">
+                                            <avatar />
+                                        </el-icon>
+                                    </template>
+                                    <div>
+                                        来自<p>SmallMonkey-ai</p>
+                                    </div>
+                        </el-popover>
+                        <el-popover :width="150" trigger="hover" class="userPopover">
+                            <template #reference>
+                                <el-icon>
+                                    <setting />
+                                </el-icon>
+                            </template>
+                            <div>
+                                待完成
+                            </div>
+                        </el-popover>
+                    </div>
                 </el-header>
                 <el-main>
                     <router-view />
@@ -132,6 +156,11 @@ onMounted(() => {
 
 .el-aside {
     width: auto;
+}
+
+.el-header {
+    display: flex;
+    justify-content: space-between;
 }
 
 .flex-grow {
