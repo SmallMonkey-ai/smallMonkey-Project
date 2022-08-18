@@ -14,18 +14,14 @@ const isCollapse = ref(true)
 
 <template>
     <el-aside>
-        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-            <el-radio-button :label="true" v-if="!isCollapse" class="addWidth">关闭
-                <el-icon>
-                    <Fold />
-                </el-icon>
-            </el-radio-button>
-            <el-radio-button :label="false" v-if="isCollapse" class="addWidth1">展开
-                <el-icon>
-                    <Expand />
-                </el-icon>
-            </el-radio-button>
-        </el-radio-group>
+        <div class="asideTop">
+            <el-icon v-if="!isCollapse" @click="isCollapse = !isCollapse">
+                <Fold />
+            </el-icon>
+            <el-icon v-else @click="isCollapse = !isCollapse">
+                <Expand />
+            </el-icon>
+        </div>
         <el-menu active-text-color="#ffd04b" background-color="#545c64" class="el-menu-vertical-demo" default-active="1"
             text-color="#fff" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
             <el-menu-item index="1" @click="$router.push('/dealTime')">
@@ -66,11 +62,20 @@ const isCollapse = ref(true)
 
 .el-aside {
     width: auto;
-}
-.el-aside::-webkit-scrollbar{
-    display: none;
+    background: #545c64
 }
 
+.el-aside::-webkit-scrollbar {
+    display: none;
+}
+.asideTop{
+    margin-top: 5px;
+    padding: 0 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+}
 .flex-grow {
     flex-grow: 1;
 }
@@ -92,12 +97,13 @@ const isCollapse = ref(true)
     :deep(.addWidth1) {
         span {
             display: block;
-            width: 81%;
         }
     }
 }
 
 .el-menu {
     height: 94%;
+    border-right: none;
+    margin: auto;
 }
 </style>
