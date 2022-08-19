@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-const welcome = () => import('../components/welcome.vue')
-const dealTime = () => import('../components/dealTime.vue')
-const dealArray = () => import('../components/dealArray.vue')
-const dealObject = () => import('../components/dealObject.vue')
-const dealOther = () => import('../components/dealOther.vue')
-const tableItem = () => import('../components/tableItem.vue')
-const watermark = () => import('../components/watermark.vue')
+const welcome = () => import('../components/Welcome/index.vue')
+const dealTime = () => import('../components/Time/index.vue')
+const dealArray = () => import('../components/Array/index.vue')
+const dealObject = () => import('../components/Object/index.vue')
+const dealOther = () => import('../components/Other/index.vue')
+const chart = () => import('../components/Chart/index.vue')
+const tableItem = () => import('../components/PublicPage/tableItem.vue')
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
@@ -30,6 +30,11 @@ const router = createRouter({
             component: dealObject
         },
         {
+            path: '/chart',
+            name: '图表',
+            component: chart
+        },
+        {
             path: '/dealOther',
             name: '其他处理',
             component: dealOther
@@ -38,11 +43,6 @@ const router = createRouter({
             path: '/tableItem',
             name: '方法详情',
             component: tableItem
-        },
-        {
-            path: '/watermark',
-            name: '页面水印',
-            component: watermark
         },
     ]
 })
