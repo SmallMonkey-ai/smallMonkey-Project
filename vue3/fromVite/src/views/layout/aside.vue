@@ -7,6 +7,7 @@ import {
     Sunrise,
     Files,
     Cloudy,
+    Histogram,
     Drizzling
 } from '@element-plus/icons-vue'
 const isCollapse = ref(true)
@@ -42,11 +43,11 @@ const isCollapse = ref(true)
                 </el-icon>
                 <template #title>对象处理</template>
             </el-menu-item>
-            <el-menu-item index="4" @click="$router.push('/watermark')">
+            <el-menu-item index="4" @click="$router.push('/chart')">
                 <el-icon>
-                    <drizzling />
+                    <histogram />
                 </el-icon>
-                <template #title>水印管理</template>
+                <template #title>图表</template>
             </el-menu-item>
             <el-menu-item index="5" @click="$router.push('/dealOther')">
                 <el-icon>

@@ -109,16 +109,17 @@ function showDetail(row) {
 <template>
     <div class="main">
         <h1>欢迎来到数组处理页</h1>
-        <el-table :data="filterTableData" height="650" style="width: 100%" @row-click="showDetail">
+        <el-table :data="filterTableData" height="670" style="width: 100%" @row-click="showDetail">
             <el-table-column prop="wayName" label="方法名" width="180" />
             <el-table-column prop="params" label="必传参数" width="240" />
             <el-table-column prop="paramsOption" label="可选参数" width="240" />
             <el-table-column prop="desc" label="描述" />
-            <el-table-column  width="240">
+            <el-table-column width="240">
                 <template #header>
                     <el-input v-model="search" size="small" placeholder="搜索描述" />
                 </template>
             </el-table-column>
+
         </el-table>
     </div>
 </template>
