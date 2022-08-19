@@ -5,6 +5,8 @@ import router from '@/router'
 import DealCurrentArray from './plugins/myJs/dealArray'
 import TimeFormatter from './plugins/myJs/time'
 import DealObject from './plugins/myJs/dealObject'
+import 'element-plus/theme-chalk/dark/css-vars.css'
+import './assets/css/dark/css-vars.css'
 let dealCurrentArray = new DealCurrentArray()
 let timeFormatter = new TimeFormatter()
 let dealObject = new DealObject()
