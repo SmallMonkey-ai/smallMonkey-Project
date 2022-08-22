@@ -5,8 +5,8 @@ const router = useRouter()
 
 <template>
     <div class="main" @click="$router.push('/dealTime')">
-        <h1>欢迎页！！</h1>
-        <img src="../../assets/welcome.png" alt="">
+        <h1>不要光赞美高耸的山峰，平原和丘陵也一样不朽！</h1>
+        <img src="../../assets/welcome.jpeg" alt="">
     </div>
 </template>
 
@@ -19,6 +19,6 @@ const router = useRouter()
 }
 
 img {
-    width: 500px;
+    width: 86%;
 }
 </style>
