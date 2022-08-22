@@ -7,11 +7,21 @@ import {
     Sunny, Moon
 } from '@element-plus/icons-vue'
 import { useDark, useToggle } from '@vueuse/core'
+import useUserStore from '../../store/user'
+import { useRouter } from 'vue-router'
+const user = useUserStore()
+const router = useRouter()
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 let dark = ref(true)
 function changeDark() {
     toggleDark()
+}
+
+function loginOut() {
+    user.token = ''
+    localStorage.setItem('token', '')
+    router.push('/login')
 }
 let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
 </script>
@@ -47,7 +57,7 @@ let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
                     </el-icon>
                 </template>
                 <div>
-                    来自<p>SmallMonkey-ai</p>
+                    来自<p>{{ user.userInfo.userName }}</p>
                 </div>
             </el-popover>
             <el-popover :width="150" trigger="hover" class="userPopover">
@@ -56,8 +66,8 @@ let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
                         <setting />
                     </el-icon>
                 </template>
-                <div>
-                    待完成
+                <div @click="loginOut">
+                    退出登陆
                 </div>
             </el-popover>
         </div>

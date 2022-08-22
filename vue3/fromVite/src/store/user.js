@@ -1,12 +1,17 @@
 import { defineStore } from 'pinia'
 
-const useCounterStore = defineStore('counter', {
+const useUserStore = defineStore('user', {
     state: () => {
         return {
-            name: 'ls',
-            age: 120,
+            userInfo: {
+                userName: '',
+            },
+            token: localStorage.getItem('token') || ''
         }
+    },
+    persist: {
+        enable: true
     },
 })
 
-export default useCounterStore
+export default useUserStore
