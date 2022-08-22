@@ -15,7 +15,7 @@ const user = useCounterStore()
 
 <template>
     <div>
-        <el-container style="overflow: hidden;height: 97vh;" v-if="user.token">
+        <el-container style="overflow: hidden;height: 100vh;" v-if="user.token">
             <asideComponent></asideComponent>
             <el-container style="display:flex;flex-direction: column;">
                 <headerComponent />
@@ -23,7 +23,7 @@ const user = useCounterStore()
                 <footerComponent />
             </el-container>
         </el-container>
-        <el-container style="overflow: hidden;height: 97vh;" v-else>
+        <el-container style="overflow: hidden;height: 100vh;" v-else>
             <router-view></router-view>
         </el-container>
     </div>

@@ -21,6 +21,6 @@ const router = useRouter()
 
 img {
     width: 86%;
-    height: 630px;
+    max-height: 630px;
 }
 </style>

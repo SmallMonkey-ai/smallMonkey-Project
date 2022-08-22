@@ -61,6 +61,7 @@ const isCollapse = ref(true)
 
 <style scoped lang="scss">
 
+
 .el-aside {
     width: auto;
     background: #545c64
@@ -70,8 +71,8 @@ const isCollapse = ref(true)
     display: none;
 }
 .asideTop{
-    margin-top: 5px;
-    padding: 0 5px;
+    margin-top: 0 .25rem;
+    padding: 0 .25rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
