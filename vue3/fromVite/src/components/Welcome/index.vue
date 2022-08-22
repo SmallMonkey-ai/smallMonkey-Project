@@ -16,9 +16,11 @@ const router = useRouter()
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 img {
     width: 86%;
+    height: 630px;
 }
 </style>
