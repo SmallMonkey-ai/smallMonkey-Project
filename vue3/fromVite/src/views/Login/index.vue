@@ -46,7 +46,7 @@ const options = Array.from({ length: 10000 }).map((_, idx) => ({
 <template>
     <div class="Login">
         <div class="main">
-            <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px" class="demo-ruleForm"
+            <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="6rem" class="demo-ruleForm"
                 :size="formSize" status-icon>
                 <el-form-item label="账号：" prop="name">
                     <el-input v-model="ruleForm.name" />
@@ -64,30 +64,43 @@ const options = Array.from({ length: 10000 }).map((_, idx) => ({
 </template>
 
 <style scoped lang="scss">
-
-
-
-
 .Login {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to top, rgba(24, 36, 29, 0), rgb(14, 129, 150));
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(135deg, #f66, #f90, #3c9, #09f, #66f) left center/400% 400%;
+    font-weight: bold;
+    font-size: 100px;
+    color: #fff;
+    animation: move 10s infinite;
 
     .main {
-        width: 400px;
-        height: 400px;
+        width: 20rem;
+        height: 20rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 }
 
+@keyframes move {
+
+    0%,
+    100% {
+        background-position-x: left;
+    }
+
+    50% {
+        background-position-x: right;
+    }
+}
+
 :deep(.el-form-item__label) {
     width: auto !important;
 }
+
 :deep(.el-form-item__content) {
     margin-left: 0 !important;
     display: flex;

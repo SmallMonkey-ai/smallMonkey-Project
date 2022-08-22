@@ -517,7 +517,7 @@ const onCancel = () => {
             height: 30px;
             font-size: 16px;
             line-height: 30px;
-            background: #C0C0C0;
+            // background: #C0C0C0;
             padding-left: 3%;
         }
     }
@@ -525,7 +525,7 @@ const onCancel = () => {
 
 .infoData {
     div {
-        background: #C0C0C0;
+        // background: #C0C0C0;
         padding-left: 3%;
     }
 }

@@ -14,11 +14,11 @@ export default {
 
 <style scoped>
 .footer {
-    height: 50px;
+    height: 2.5rem;
     border-top: 1px solid #e9e9e9;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 1rem;
 }
 </style>
