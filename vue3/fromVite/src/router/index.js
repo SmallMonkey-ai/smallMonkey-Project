@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+const login = () => import('../views/Login/index.vue')
 const welcome = () => import('../components/Welcome/index.vue')
 const dealTime = () => import('../components/Time/index.vue')
 const dealArray = () => import('../components/Array/index.vue')
@@ -11,7 +12,16 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'welcome',
+            redirect: '/welcome',
+        },
+        {
+            path: '/login',
+            name: '登录',
+            component: login
+        },
+        {
+            path: '/welcome',
+            name: '欢迎',
             component: welcome
         },
         {

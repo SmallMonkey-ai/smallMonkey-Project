@@ -7,11 +7,21 @@ import {
     Sunny, Moon
 } from '@element-plus/icons-vue'
 import { useDark, useToggle } from '@vueuse/core'
+import useUserStore from '../../store/user'
+import { useRouter } from 'vue-router'
+const user = useUserStore()
+const router = useRouter()
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 let dark = ref(true)
 function changeDark() {
     toggleDark()
+}
+
+function loginOut() {
+    user.token = ''
+    localStorage.setItem('token', '')
+    router.push('/login')
 }
 let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
 </script>
@@ -26,13 +36,13 @@ let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
             <div class="flex-grow" />
         </el-menu>
         <div class="headerRight">
-            <div>
-                <el-switch v-model="dark" class="mt-2" style="margin-left: 24px" inline-prompt :active-icon="Sunny"
-                    :inactive-icon="Moon" @change="changeDark" />
+            <div class="dark">
+                <el-switch v-model="dark" class="mt-2" inline-prompt :active-icon="Sunny" :inactive-icon="Moon"
+                    @change="changeDark" />
             </div>
             <el-popover :width="200" trigger="hover" class="userPopover">
                 <template #reference>
-                    <el-icon style="margin-right:15px" @click="$router.push('/')">
+                    <el-icon @click="$router.push('/')">
                         <magicStick />
                     </el-icon>
                 </template>
@@ -40,15 +50,14 @@ let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
                     返回主页
                 </div>
             </el-popover>
-
             <el-popover :width="200" trigger="hover" class="userPopover">
                 <template #reference>
-                    <el-icon style="margin-right:15px">
+                    <el-icon>
                         <avatar />
                     </el-icon>
                 </template>
                 <div>
-                    来自<p>SmallMonkey-ai</p>
+                    来自<p>{{ user.userInfo.userName }}</p>
                 </div>
             </el-popover>
             <el-popover :width="150" trigger="hover" class="userPopover">
@@ -57,8 +66,8 @@ let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
                         <setting />
                     </el-icon>
                 </template>
-                <div>
-                    待完成
+                <div @click="loginOut">
+                    退出登陆
                 </div>
             </el-popover>
         </div>
@@ -73,9 +82,18 @@ let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
 }
 
 .headerRight {
+    width: 6%;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     align-items: center;
+
+    .dark {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 :deep(.el-switch__core .el-switch__action) {
@@ -91,7 +109,7 @@ let src = new URL('../../assets/monkeyDream.jpeg', import.meta.url).href
     background: #28292c;
 }
 
-:deep(.el-switch__core .is-icon,.el-switch__core) {
+:deep(.el-switch__core .is-icon, .el-switch__core) {
     color: #f3f1f1;
 }
 </style>
